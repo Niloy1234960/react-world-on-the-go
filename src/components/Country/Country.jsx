@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Country.css";
 
-const Country = ({ country }) => {
+const Country = ({ country, handleVisitedCountries }) => {
   //   console.log(country);
   const [visited, setVisited] = useState(false);
 
@@ -15,29 +15,32 @@ const Country = ({ country }) => {
 
     // 2nd way
     setVisited(visited ? false : true);
+    handleVisitedCountries(country)
 
-    // 3rd way 
+    // 3rd way
     // setVisited(!visited)
   };
   return (
-    <div className={`country ${visited && "country-visited"}`}>
-      <img src={country.flags.flags.png} alt={country.flags.flags.alt} />
-      <div className="country">
-        <p>Country Common name: {country.name.common}</p>
-        <p>Capital: {country.capital.capital}</p>
-        <p>This countries region: {country.region.region}</p>
-        <p>
-          Language: {country.languages.languages.eng} and{" "}
-          {country.languages.languages.jam}
-        </p>
-        <p>Population is: {country.population.population}</p>
-        <p>
-          Total area is: {country.area.area} it's{" "}
-          {country.area.area > 300000 ? "Big Country" : "Small Country."}
-        </p>
-        <button onClick={handleVisited} className="btn">
-          {visited ? "Visited" : "Not Visited"}
-        </button>
+    <div>
+      <div className={`country ${visited && "country-visited"}`}>
+        <img src={country.flags.flags.png} alt={country.flags.flags.alt} />
+        <div className="country">
+          <p>Country Common name: {country.name.common}</p>
+          <p>Capital: {country.capital.capital}</p>
+          <p>This countries region: {country.region.region}</p>
+          <p>
+            Language: {country.languages.languages.eng} and{" "}
+            {country.languages.languages.jam}
+          </p>
+          <p>Population is: {country.population.population}</p>
+          <p>
+            Total area is: {country.area.area} it's{" "}
+            {country.area.area > 300000 ? "Big Country" : "Small Country."}
+          </p>
+          <button onClick={handleVisited} className="btn">
+            {visited ? "Visited" : "Not Visited"}
+          </button>
+        </div>
       </div>
     </div>
   );
